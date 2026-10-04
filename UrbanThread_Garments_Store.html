@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanThread Garments Store</title>
+<style>
+:root{--ink:#171717;--muted:#6b6b6b;--paper:#f7f4ef;--card:#fff;--line:#e7e1d8;--accent:#7a4b2b;--soft:#eee6dc;--ok:#247a52;--danger:#b43b35}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink)}
+button,input,select{font:inherit}.top{background:#171717;color:white;padding:8px 5%;font-size:12px;text-align:center}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 5%;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px}.logo span{color:var(--accent)}
+.nav-actions{display:flex;gap:8px}.btn{border:1px solid #1c1c1c;background:#1c1c1c;color:white;padding:10px 15px;border-radius:9px;cursor:pointer}.btn.light{background:white;color:#1c1c1c;border-color:var(--line)}.btn.accent{background:var(--accent);border-color:var(--accent)}
+.hero{padding:55px 5%;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;background:linear-gradient(120deg,#efe7dd,#fff)}
+.hero h1{font-size:52px;line-height:1.02;margin:0 0 15px;max-width:650px}.hero p{color:var(--muted);font-size:17px;max-width:570px;line-height:1.6}
+.hero-card{min-height:310px;border-radius:22px;background:linear-gradient(135deg,#4a2d1e,#c29b78);display:flex;align-items:flex-end;padding:28px;color:#fff;box-shadow:0 20px 50px #5c3b2630}
+.section{padding:38px 5%}.toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-bottom:22px}.filters{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:9px 13px;border:1px solid var(--line);border-radius:20px;background:#fff;cursor:pointer}.chip.active{background:#171717;color:white}
+.search{padding:10px 13px;border:1px solid var(--line);border-radius:9px;min-width:230px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pic{height:210px;background:#e9e0d6;display:flex;align-items:center;justify-content:center;font-size:54px}.product-body{padding:15px}.tag{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase}.product h3{margin:7px 0 5px;font-size:17px}.price{font-weight:800;margin:8px 0}.sizes{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.size{border:1px solid var(--line);border-radius:5px;padding:4px 7px;font-size:11px}.product .btn{width:100%;margin-top:6px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}.dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}.stat small{color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:6px}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{background:#f8f6f2}.low{color:var(--danger);font-weight:700}.ok{color:var(--ok);font-weight:700}
+.hidden{display:none!important}.modal{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-box{background:white;border-radius:18px;padding:24px;max-width:520px;width:100%;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#eee;border-radius:50%;width:32px;height:32px;cursor:pointer}.row{display:flex;gap:10px}.field{margin:12px 0}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.field input,.field select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px}
+footer{padding:30px 5%;background:#171717;color:#ddd;margin-top:20px}.notice{padding:12px;background:#f2eee8;border-radius:9px;color:#5d4a39;font-size:13px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.dashboard-grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.hero h1{font-size:40px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.dashboard-grid{grid-template-columns:1fr}.hero h1{font-size:34px}nav{gap:10px}.logo{font-size:20px}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="top">College Project Demo • Garments Store • Inventory + Sales Reporting</div>
+<nav>
+  <div class="logo">Urban<span>Thread</span></div>
+  <div class="nav-actions">
+    <button class="btn light" onclick="showRole('customer')">Customer</button>
+    <button class="btn" onclick="showRole('admin')">Admin Dashboard</button>
+  </div>
+</nav>
+
+<main id="customerView">
+<section class="hero">
+  <div>
+    <div class="tag">Everyday fashion, simply managed</div>
+    <h1>Style that fits. Stock that stays under control.</h1>
+    <p>Browse garments, select sizes, add products to your cart and complete a demo payment. The admin dashboard automatically tracks sales and inventory.</p>
+    <button class="btn accent" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Collection</button>
+  </div>
+  <div class="hero-card"><div><div class="tag" style="color:#fff">Featured</div><h2>New Season Essentials</h2><p style="color:#fff">Clean fits • Multiple sizes • Live demo inventory</p></div></div>
+</section>
+<section class="section" id="shop">
+  <div class="toolbar">
+    <div class="filters" id="filters"></div>
+    <input class="search" id="search" placeholder="Search garments..." oninput="renderProducts()">
+  </div>
+  <div class="grid" id="products"></div>
+</section>
+</main>
+
+<main id="adminView" class="section hidden">
+  <div class="toolbar"><div><h1 style="margin:0">Admin Dashboard</h1><p style="color:var(--muted)">Sales, inventory and size-wise reporting</p></div><button class="btn accent" onclick="openAddProduct()">+ Add Product</button></div>
+  <div class="dashboard-grid" id="stats"></div>
+  <div class="panel"><h2>Size-wise Inventory Report</h2><div class="table-wrap"><table><thead><tr><th>Size</th><th>Sold</th><th>Available</th><th>Total Stock</th></tr></thead><tbody id="sizeReport"></tbody></table></div></div>
+  <div class="panel"><h2>Product Inventory</h2><div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Size</th><th>Sold</th><th>Available</th><th>Status</th></tr></thead><tbody id="inventory"></tbody></table></div></div>
+  <div class="panel"><h2>Category-wise Sales</h2><div class="table-wrap"><table><thead><tr><th>Category</th><th>Units Sold</th><th>Sales</th></tr></thead><tbody id="categoryReport"></tbody></table></div></div>
+  <div class="panel"><h2>Recent Orders</h2><div id="orders"></div></div>
+</main>
+
+<div class="modal hidden" id="modal"><div class="modal-box" id="modalBox"></div></div>
+<footer><strong>UrbanThread Garments Store</strong><br><small>Demonstration website created for a PGDM business/IT assignment. Payment is simulated; no real transaction is processed.</small></footer>
+
+<script>
+const seed=[
+{id:1,name:"Classic White Shirt",cat:"Men",price:1299,emoji:"👔",sizes:{S:5,M:8,L:6,XL:3},sold:{S:1,M:2,L:1,XL:0}},
+{id:2,name:"Relaxed Denim Jacket",cat:"Men",price:2199,emoji:"🧥",sizes:{S:3,M:6,L:5,XL:2},sold:{S:0,M:1,L:2,XL:0}},
+{id:3,name:"Floral Summer Dress",cat:"Women",price:1899,emoji:"👗",sizes:{S:5,M:7,L:4,XL:2},sold:{S:1,M:2,L:1,XL:0}},
+{id:4,name:"Oversized Graphic Tee",cat:"Women",price:999,emoji:"👕",sizes:{S:6,M:8,L:5,XL:2},sold:{S:1,M:3,L:1,XL:0}},
+{id:5,name:"Cotton Polo T-Shirt",cat:"Men",price:899,emoji:"👕",sizes:{S:4,M:7,L:7,XL:4},sold:{S:0,M:2,L:2,XL:1}},
+{id:6,name:"Kids Printed Hoodie",cat:"Kids",price:1199,emoji:"🧒",sizes:{S:5,M:5,L:4,XL:2},sold:{S:1,M:1,L:0,XL:0}},
+{id:7,name:"Straight Fit Trousers",cat:"Women",price:1499,emoji:"👖",sizes:{S:4,M:6,L:5,XL:2},sold:{S:0,M:1,L:1,XL:0}},
+{id:8,name:"Canvas Casual Cap",cat:"Accessories",price:499,emoji:"🧢",sizes:{S:10,M:0,L:0,XL:0},sold:{S:3,M:0,L:0,XL:0}}
+];
+let products=JSON.parse(localStorage.getItem("ut_products"))||seed;
+let orders=JSON.parse(localStorage.getItem("ut_orders"))||[];
+let cart=[];let activeCat="All";
+const money=n=>"₹"+n.toLocaleString("en-IN");
+function save(){localStorage.setItem("ut_products",JSON.stringify(products));localStorage.setItem("ut_orders",JSON.stringify(orders))}
+function showRole(role){document.getElementById("customerView").classList.toggle("hidden",role!=="customer");document.getElementById("adminView").classList.toggle("hidden",role!=="admin");if(role==="admin")renderAdmin();window.scrollTo({top:0,behavior:"smooth"})}
+function renderFilters(){let cats=["All",...new Set(products.map(p=>p.cat))];document.getElementById("filters").innerHTML=cats.map(c=>`<button class="chip ${activeCat===c?"active":""}" onclick="activeCat='${c}';renderFilters();renderProducts()">${c}</button>`).join("")}
+function totalAvail(p){return Object.values(p.sizes).reduce((a,b)=>a+b,0)}
+function renderProducts(){renderFilters();let q=document.getElementById("search").value.toLowerCase();let list=products.filter(p=>(activeCat==="All"||p.cat===activeCat)&&p.name.toLowerCase().includes(q));document.getElementById("products").innerHTML=list.map(p=>`<article class="product"><div class="pic">${p.emoji}</div><div class="product-body"><div class="tag">${p.cat}</div><h3>${p.name}</h3><div class="price">${money(p.price)}</div><div class="sizes">${Object.entries(p.sizes).filter(([s,n])=>n>0).map(([s,n])=>`<span class="size">${s}</span>`).join("")}</div><div style="font-size:12px;color:#777">Available: ${totalAvail(p)} units</div><button class="btn" onclick="openProduct(${p.id})">Select Size & Add</button></div></article>`).join("")||"<div class='notice'>No products found.</div>"}
+function openProduct(id){let p=products.find(x=>x.id===id);document.getElementById("modal").classList.remove("hidden");document.getElementById("modalBox").innerHTML=`<div class="modal-head"><h2>${p.name}</h2><button class="close" onclick="closeModal()">×</button></div><p>${money(p.price)} • ${p.cat}</p><div class="field"><label>Size</label><select id="selSize">${Object.entries(p.sizes).filter(([s,n])=>n>0).map(([s,n])=>`<option value="${s}">${s} — ${n} available</option>`).join("")}</select></div><div class="field"><label>Quantity</label><input id="qty" type="number" min="1" value="1"></div><button class="btn accent" onclick="addCart(${p.id})">Add to Cart</button> <button class="btn light" onclick="openCart()">View Cart (${cart.length})</button>`}
+function closeModal(){document.getElementById("modal").classList.add("hidden")}
+function addCart(id){let p=products.find(x=>x.id===id),size=document.getElementById("selSize").value,qty=Math.max(1,parseInt(document.getElementById("qty").value||1));if(qty>p.sizes[size])return alert("Not enough stock.");cart.push({id,size,qty});openCart()}
+function openCart(){document.getElementById("modal").classList.remove("hidden");let total=cart.reduce((a,c)=>a+products.find(p=>p.id===c.id).price*c.qty,0);document.getElementById("modalBox").innerHTML=`<div class="modal-head"><h2>Your Cart</h2><button class="close" onclick="closeModal()">×</button></div>${cart.length?cart.map((c,i)=>{let p=products.find(p=>p.id===c.id);return `<div class="panel" style="margin:10px 0"><strong>${p.name}</strong><br>Size: ${c.size} • Qty: ${c.qty} • ${money(p.price*c.qty)} <button class="btn light" style="float:right;padding:5px 9px" onclick="cart.splice(${i},1);openCart()">Remove</button></div>`}).join("")+`<h3>Total: ${money(total)}</h3><button class="btn accent" onclick="checkout()">Proceed to Payment</button>`:"<p>Your cart is empty.</p>"}`}
+function checkout(){if(!cart.length)return;let total=cart.reduce((a,c)=>a+products.find(p=>p.id===c.id).price*c.qty,0);document.getElementById("modalBox").innerHTML=`<div class="modal-head"><h2>Demo Checkout</h2><button class="close" onclick="closeModal()">×</button></div><div class="notice">This is a project demonstration. No real payment will be processed.</div><div class="field"><label>Customer Name</label><input id="cust" placeholder="Enter name"></div><div class="field"><label>Payment Method</label><select id="pay"><option>UPI (Demo)</option><option>Card (Demo)</option><option>Cash on Delivery</option></select></div><h3>Pay ${money(total)}</h3><button class="btn accent" onclick="placeOrder()">Confirm Payment</button>`}
+function placeOrder(){let total=0;cart.forEach(c=>{let p=products.find(p=>p.id===c.id);p.sizes[c.size]-=c.qty;p.sold[c.size]=(p.sold[c.size]||0)+c.qty;total+=p.price*c.qty});orders.unshift({id:"ORD"+Date.now().toString().slice(-6),date:new Date().toLocaleString("en-IN"),customer:document.getElementById("cust").value||"Guest",total,items:cart.length});cart=[];save();document.getElementById("modalBox").innerHTML=`<div class="notice" style="margin-top:10px">✓ Payment successful</div><h2>Order confirmed</h2><p>Your order has been recorded and inventory has been updated automatically.</p><button class="btn" onclick="closeModal();renderProducts()">Continue Shopping</button>`}
+function renderAdmin(){let sales=orders.reduce((a,o)=>a+o.total,0);let units=products.reduce((a,p)=>a+Object.values(p.sold).reduce((x,y)=>x+y,0),0);let inv=products.reduce((a,p)=>a+totalAvail(p),0);document.getElementById("stats").innerHTML=`<div class="stat"><small>Total Sales</small><strong>${money(sales)}</strong></div><div class="stat"><small>Orders</small><strong>${orders.length}</strong></div><div class="stat"><small>Items Sold</small><strong>${units}</strong></div><div class="stat"><small>Current Inventory</small><strong>${inv}</strong></div>`;
+let sizes=["S","M","L","XL"];document.getElementById("sizeReport").innerHTML=sizes.map(s=>{let sold=products.reduce((a,p)=>a+(p.sold[s]||0),0),av=products.reduce((a,p)=>a+(p.sizes[s]||0),0);return `<tr><td>${s}</td><td>${sold}</td><td>${av}</td><td>${sold+av}</td></tr>`}).join("");
+document.getElementById("inventory").innerHTML=products.flatMap(p=>Object.keys(p.sizes).map(s=>`<tr><td>${p.name}</td><td>${p.cat}</td><td>${s}</td><td>${p.sold[s]||0}</td><td>${p.sizes[s]}</td><td class="${p.sizes[s]<=2?"low":"ok"}">${p.sizes[s]<=2?"Low Stock":"Available"}</td></tr>`)).join("");
+let cats=[...new Set(products.map(p=>p.cat))];document.getElementById("categoryReport").innerHTML=cats.map(c=>{let ps=products.filter(p=>p.cat===c),u=ps.reduce((a,p)=>a+Object.values(p.sold).reduce((x,y)=>x+y,0),0),v=ps.reduce((a,p)=>a+Object.entries(p.sold).reduce((x,[s,n])=>x+n*p.price,0),0);return `<tr><td>${c}</td><td>${u}</td><td>${money(v)}</td></tr>`}).join("");
+document.getElementById("orders").innerHTML=orders.length?orders.slice(0,8).map(o=>`<div class="panel" style="margin:8px 0"><strong>${o.id}</strong> — ${o.customer} — ${money(o.total)}<br><small>${o.date} • ${o.items} line item(s)</small></div>`).join(""):"<p>No orders yet. Complete a customer purchase to populate this section.</p>"}
+function openAddProduct(){document.getElementById("modal").classList.remove("hidden");document.getElementById("modalBox").innerHTML=`<div class="modal-head"><h2>Add Product</h2><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Product Name</label><input id="np" placeholder="e.g. Linen Shirt"></div><div class="field"><label>Category</label><select id="nc"><option>Men</option><option>Women</option><option>Kids</option><option>Accessories</option></select></div><div class="field"><label>Price (₹)</label><input id="nprice" type="number" value="999"></div><div class="field"><label>Stock — S / M / L / XL</label><input id="nst" placeholder="5,8,6,3" value="5,5,5,2"></div><button class="btn accent" onclick="addProduct()">Save Product</button>`}
+function addProduct(){let st=(document.getElementById("nst").value.split(",").map(x=>parseInt(x)||0));products.push({id:Date.now(),name:document.getElementById("np").value||"New Garment",cat:document.getElementById("nc").value,price:parseInt(document.getElementById("nprice").value)||999,emoji:"👚",sizes:{S:st[0]||0,M:st[1]||0,L:st[2]||0,XL:st[3]||0},sold:{S:0,M:0,L:0,XL:0}});save();closeModal();renderAdmin();renderProducts()}
+renderProducts();
+</script>
+</body>
+</html>
